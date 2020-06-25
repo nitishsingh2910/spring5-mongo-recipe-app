@@ -1,17 +1,19 @@
 package guru.springframework.spring5recipeapp.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class Ingredient {
 
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String description;
     private BigDecimal amount;
 
+    @DBRef
     private UnitOfMeasure uom;
-
-    private Recipe recipe;
 
     public Ingredient(){
 
@@ -27,7 +29,7 @@ public class Ingredient {
         this.description = description;
         this.amount = amount;
         this.uom = uom;
-        this.recipe = recipe;
+//        this.recipe = recipe;
     }
 
     public String getId() {
@@ -46,10 +48,6 @@ public class Ingredient {
         return this.uom;
     }
 
-    public Recipe getRecipe() {
-        return this.recipe;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -66,7 +64,4 @@ public class Ingredient {
         this.uom = uom;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
 }

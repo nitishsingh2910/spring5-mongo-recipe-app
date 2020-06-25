@@ -47,6 +47,9 @@ public class IngredientServiceImpl implements IngredientService {
         if(! ingredientCommandOptional.isPresent())
             log.error("Ingredient id not found. Id: "+ ingredientId);
 
+        IngredientCommand ingredientCommand = ingredientCommandOptional.get();
+        ingredientCommand.setRecipeId(recipeId);
+
         return ingredientCommandOptional.get();
     }
 
@@ -108,7 +111,7 @@ public class IngredientServiceImpl implements IngredientService {
             if(ingredientOptional.isPresent()){
                 log.debug("found Ingredient");
                 Ingredient ingredient = ingredientOptional.get();
-                ingredient.setRecipe(null);
+//                ingredient.setRecipe(null);
                 recipe.getIngredients().remove(ingredientOptional.get());
                 recipeRepository.save(recipe);
             }

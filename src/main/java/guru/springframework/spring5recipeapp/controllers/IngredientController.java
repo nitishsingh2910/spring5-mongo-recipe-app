@@ -54,10 +54,9 @@ public class IngredientController {
     @PostMapping("/recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand){
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
-        log.debug("saved recipe id:" + savedCommand.getRecipeId());
         log.debug("saved ingredient id:" + savedCommand.getId());
 
-        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+        return "redirect:/recipe/" + ingredientCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
 
     }
 
@@ -67,7 +66,7 @@ public class IngredientController {
         // todo raise exception if null
 
         IngredientCommand ingredientCommand = new IngredientCommand();
-        ingredientCommand.setRecipeId(recipeId);
+//        ingredientCommand.setRecipeId(recipeId);
         model.addAttribute("ingredient", ingredientCommand);
 
         ingredientCommand.setUom(new UnitOfMeasureCommand());

@@ -1,11 +1,16 @@
 package guru.springframework.spring5recipeapp.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@Document
 public class Recipe {
 
+    @Id
     private String id;
 
     private String description;
@@ -22,7 +27,7 @@ public class Recipe {
 
     private Notes notes;
 
-
+    @DBRef
     private Set<Category> categories;
 
     public Recipe() {
@@ -33,7 +38,7 @@ public class Recipe {
     public void setNotes(Notes notes) {
         if(notes != null) {
             this.notes = notes;
-            notes.setRecipe(this);
+//            notes.setRecipe(this);
         }
     }
 
@@ -42,7 +47,7 @@ public class Recipe {
     }
 
     public Recipe addIngredient(Ingredient ingredient){
-        ingredient.setRecipe(this);
+//        ingredient.setRecipe(this);
         this.ingredients.add(ingredient);
         return this;
     }
