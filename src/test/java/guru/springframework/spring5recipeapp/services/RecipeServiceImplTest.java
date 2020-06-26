@@ -89,9 +89,4 @@ class RecipeServiceImplTest {
         Assertions.assertThrows(NotFoundException.class, ()->recipeService.findById("1"));
     }
 
-//    @Test
-//    void getRecipeByIdTestNumberFormatException(){
-//
-//        Assertions.assertThrows(NumberFormatException.class, ()->recipeService.findById("asd"));
-//    }
 }
